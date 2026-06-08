@@ -1,0 +1,49 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-sans: "Inter", system-ui, -apple-system, sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  @apply bg-slate-50 text-ink antialiased;
+}
+
+@layer components {
+  .container-page {
+    @apply mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8;
+  }
+
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-lg px-4 py-2.5 text-sm font-semibold transition focus:outline-none focus:ring-2 focus:ring-offset-2;
+  }
+
+  .btn-gold {
+    @apply btn bg-psc text-white hover:bg-psc-dark focus:ring-psc;
+  }
+
+  .btn-ink {
+    @apply btn bg-ink text-white hover:bg-ink-800 focus:ring-ink;
+  }
+
+  .btn-outline {
+    @apply btn border border-slate-300 bg-white text-ink hover:bg-slate-100 focus:ring-slate-400;
+  }
+
+  .card {
+    @apply rounded-xl border border-slate-200 bg-white shadow-sm;
+  }
+
+  .input {
+    @apply w-full rounded-lg border border-slate-300 px-3 py-2 text-sm text-ink focus:border-psc focus:outline-none focus:ring-1 focus:ring-psc;
+  }
+
+  .tag {
+    @apply inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-semibold;
+  }
+}
