@@ -26,7 +26,10 @@ Then open **http://localhost:3000**.
 - **Next.js (App Router) + TypeScript**
 - **Tailwind CSS** for styling
 - **qrcode.react** for verification QR codes
-- **recharts** for the ICTAM analytics charts
+- **recharts** for the analytics charts (ICTAM + dashboard sparklines)
+- **framer-motion** for entrance/interaction animation and route transitions
+- Full **dark theme** throughout with a blended **ICTAM red** (authority) +
+  **PSC gold** (platform) accent system; verified green for status
 - All data comes from local seed files in [`lib/seed.ts`](lib/seed.ts) — no
   database, no API keys.
 

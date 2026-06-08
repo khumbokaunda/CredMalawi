@@ -11,7 +11,40 @@ html {
 }
 
 body {
-  @apply bg-slate-50 text-ink antialiased;
+  @apply bg-base text-ink antialiased;
+  /* Deep midnight → charcoal canvas with a faint mesh of ICTAM navy / red / PSC gold. */
+  background-color: #0B1120;
+  background-image:
+    radial-gradient(55% 45% at 85% -5%, rgba(225, 29, 42, 0.10), transparent 60%),
+    radial-gradient(45% 40% at 5% 5%, rgba(27, 79, 156, 0.16), transparent 55%),
+    radial-gradient(50% 45% at 50% 110%, rgba(245, 166, 35, 0.05), transparent 60%);
+  background-attachment: fixed;
+}
+
+/* Dark, themed form controls */
+select option {
+  background-color: #111827;
+  color: #f8fafc;
+}
+
+::selection {
+  background: rgba(245, 166, 35, 0.25);
+}
+
+/* Slimmer dark scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #0b1120;
+}
+::-webkit-scrollbar-thumb {
+  background: #243049;
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #334155;
 }
 
 @layer components {
@@ -19,31 +52,65 @@ body {
     @apply mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8;
   }
 
+  /* ---- Buttons ---- */
   .btn {
-    @apply inline-flex items-center justify-center gap-2 rounded-lg px-4 py-2.5 text-sm font-semibold transition focus:outline-none focus:ring-2 focus:ring-offset-2;
+    @apply inline-flex items-center justify-center gap-2 rounded-xl px-4 py-2.5 text-sm font-semibold transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-base active:scale-[0.97];
   }
-
+  /* ICTAM red = authority / primary actions */
+  .btn-red {
+    @apply btn bg-ictam text-white hover:bg-ictam-light hover:shadow-glow-red focus:ring-ictam;
+  }
+  /* PSC gold = premium / platform moments */
   .btn-gold {
-    @apply btn bg-psc text-white hover:bg-psc-dark focus:ring-psc;
+    @apply btn bg-psc text-base-900 hover:bg-psc-light hover:shadow-glow-gold focus:ring-psc;
   }
-
-  .btn-ink {
-    @apply btn bg-ink text-white hover:bg-ink-800 focus:ring-ink;
-  }
-
   .btn-outline {
-    @apply btn border border-slate-300 bg-white text-ink hover:bg-slate-100 focus:ring-slate-400;
+    @apply btn border border-base-600 bg-white/[0.03] text-ink hover:border-base-500 hover:bg-white/[0.06] focus:ring-base-500;
+  }
+  .btn-ghost {
+    @apply btn text-ink-muted hover:bg-white/[0.05] hover:text-ink;
   }
 
+  /* ---- Surfaces ---- */
   .card {
-    @apply rounded-xl border border-slate-200 bg-white shadow-sm;
+    @apply rounded-2xl border border-base-600/70 bg-base-800/70 shadow-card-dark backdrop-blur-sm;
+  }
+  .panel {
+    @apply rounded-2xl border border-base-600/60 bg-base-800/60 backdrop-blur-sm;
   }
 
   .input {
-    @apply w-full rounded-lg border border-slate-300 px-3 py-2 text-sm text-ink focus:border-psc focus:outline-none focus:ring-1 focus:ring-psc;
+    @apply w-full rounded-xl border border-base-600 bg-base-900/80 px-3 py-2.5 text-sm text-ink placeholder:text-ink-faint focus:border-ictam focus:outline-none focus:ring-1 focus:ring-ictam;
   }
 
   .tag {
     @apply inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-semibold;
+  }
+
+  /* Hairline label */
+  .eyebrow {
+    @apply text-xs font-semibold uppercase tracking-[0.18em] text-ink-faint;
+  }
+}
+
+@layer utilities {
+  /* Soft hover-lift + glow for interactive cards */
+  .hover-lift {
+    @apply transition-all duration-300 hover:-translate-y-1;
+  }
+  .hover-glow-red:hover {
+    box-shadow: 0 0 0 1px rgba(225, 29, 42, 0.35), 0 18px 40px -18px rgba(225, 29, 42, 0.5);
+  }
+  .hover-glow-gold:hover {
+    box-shadow: 0 0 0 1px rgba(245, 166, 35, 0.35), 0 18px 40px -18px rgba(245, 166, 35, 0.5);
+  }
+  .hover-glow-soft:hover {
+    box-shadow: 0 0 0 1px rgba(148, 163, 184, 0.18), 0 18px 40px -18px rgba(0, 0, 0, 0.8);
+  }
+  .text-gradient-gold {
+    @apply bg-gradient-to-r from-psc-light to-psc bg-clip-text text-transparent;
+  }
+  .text-gradient-red {
+    @apply bg-gradient-to-r from-ictam-light to-ictam bg-clip-text text-transparent;
   }
 }

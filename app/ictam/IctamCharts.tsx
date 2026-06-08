@@ -12,11 +12,27 @@ import {
   Pie,
   Cell,
   Legend,
-  LineChart,
-  Line,
+  AreaChart,
+  Area,
 } from "recharts";
+import Reveal from "@/components/motion/Reveal";
 
-const PIE_COLORS = ["#1B4F9C", "#C8920E", "#16A34A", "#C8102E", "#64748B"];
+const RED = "#E11D2A";
+const GOLD = "#F5A623";
+const GREEN = "#22C55E";
+const BLUE = "#3B82F6";
+const GRID = "#243049";
+const AXIS = "#64748B";
+
+const PIE_COLORS = [RED, GOLD, GREEN, BLUE, "#94A3B8"];
+
+const tooltipStyle = {
+  backgroundColor: "#0D1424",
+  border: "1px solid #243049",
+  borderRadius: 12,
+  color: "#F8FAFC",
+  fontSize: 12,
+};
 
 export default function IctamCharts({
   byRegion,
@@ -31,21 +47,19 @@ export default function IctamCharts({
 }) {
   return (
     <div className="mt-6 grid gap-6 lg:grid-cols-2">
-      {/* Credentials by region */}
-      <ChartCard title="Credentials by region of Malawi">
+      <ChartCard title="Credentials by region of Malawi" accent="red" delay={0}>
         <ResponsiveContainer width="100%" height={280}>
           <BarChart data={byRegion} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>
-            <CartesianGrid strokeDasharray="3 3" stroke="#e2e8f0" />
-            <XAxis dataKey="region" tick={{ fontSize: 12 }} />
-            <YAxis allowDecimals={false} tick={{ fontSize: 12 }} />
-            <Tooltip />
-            <Bar dataKey="credentials" fill="#1B4F9C" radius={[6, 6, 0, 0]} />
+            <CartesianGrid strokeDasharray="3 3" stroke={GRID} vertical={false} />
+            <XAxis dataKey="region" tick={{ fontSize: 12, fill: AXIS }} axisLine={{ stroke: GRID }} tickLine={false} />
+            <YAxis allowDecimals={false} tick={{ fontSize: 12, fill: AXIS }} axisLine={false} tickLine={false} />
+            <Tooltip contentStyle={tooltipStyle} cursor={{ fill: "rgba(255,255,255,0.03)" }} />
+            <Bar dataKey="credentials" fill={RED} radius={[6, 6, 0, 0]} animationDuration={900} />
           </BarChart>
         </ResponsiveContainer>
       </ChartCard>
 
-      {/* Categories pie */}
-      <ChartCard title="Badge categories">
+      <ChartCard title="Badge categories" accent="gold" delay={0.08}>
         <ResponsiveContainer width="100%" height={280}>
           <PieChart>
             <Pie
@@ -54,74 +68,101 @@ export default function IctamCharts({
               nameKey="name"
               cx="50%"
               cy="50%"
-              outerRadius={90}
-              label
+              innerRadius={48}
+              outerRadius={92}
+              paddingAngle={3}
+              stroke="#0B1120"
+              strokeWidth={2}
+              animationDuration={900}
+              label={{ fill: "#94A3B8", fontSize: 11 }}
             >
               {categories.map((_, i) => (
                 <Cell key={i} fill={PIE_COLORS[i % PIE_COLORS.length]} />
               ))}
             </Pie>
-            <Tooltip />
-            <Legend />
+            <Tooltip contentStyle={tooltipStyle} />
+            <Legend wrapperStyle={{ fontSize: 12, color: "#94A3B8" }} />
           </PieChart>
         </ResponsiveContainer>
       </ChartCard>
 
-      {/* Top skills */}
-      <ChartCard title="Top skills / badge categories">
+      <ChartCard title="Top skills / badge categories" accent="gold" delay={0.12}>
         <ResponsiveContainer width="100%" height={280}>
           <BarChart
             data={topSkills}
             layout="vertical"
             margin={{ top: 10, right: 20, left: 10, bottom: 0 }}
           >
-            <CartesianGrid strokeDasharray="3 3" stroke="#e2e8f0" />
-            <XAxis type="number" allowDecimals={false} tick={{ fontSize: 12 }} />
+            <CartesianGrid strokeDasharray="3 3" stroke={GRID} horizontal={false} />
+            <XAxis type="number" allowDecimals={false} tick={{ fontSize: 12, fill: AXIS }} axisLine={false} tickLine={false} />
             <YAxis
               type="category"
               dataKey="skill"
               width={150}
-              tick={{ fontSize: 11 }}
+              tick={{ fontSize: 11, fill: AXIS }}
+              axisLine={false}
+              tickLine={false}
             />
-            <Tooltip />
-            <Bar dataKey="count" fill="#C8920E" radius={[0, 6, 6, 0]} />
+            <Tooltip contentStyle={tooltipStyle} cursor={{ fill: "rgba(255,255,255,0.03)" }} />
+            <Bar dataKey="count" fill={GOLD} radius={[0, 6, 6, 0]} animationDuration={900} />
           </BarChart>
         </ResponsiveContainer>
       </ChartCard>
 
-      {/* Issuance trend */}
-      <ChartCard title="Issuance over time">
+      <ChartCard title="Issuance over time" accent="green" delay={0.16}>
         <ResponsiveContainer width="100%" height={280}>
-          <LineChart data={issuanceTrend} margin={{ top: 10, right: 20, left: -20, bottom: 0 }}>
-            <CartesianGrid strokeDasharray="3 3" stroke="#e2e8f0" />
-            <XAxis dataKey="month" tick={{ fontSize: 12 }} />
-            <YAxis allowDecimals={false} tick={{ fontSize: 12 }} />
-            <Tooltip />
-            <Line
+          <AreaChart data={issuanceTrend} margin={{ top: 10, right: 20, left: -20, bottom: 0 }}>
+            <defs>
+              <linearGradient id="issuedFill" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stopColor={GREEN} stopOpacity={0.45} />
+                <stop offset="100%" stopColor={GREEN} stopOpacity={0} />
+              </linearGradient>
+            </defs>
+            <CartesianGrid strokeDasharray="3 3" stroke={GRID} vertical={false} />
+            <XAxis dataKey="month" tick={{ fontSize: 12, fill: AXIS }} axisLine={{ stroke: GRID }} tickLine={false} />
+            <YAxis allowDecimals={false} tick={{ fontSize: 12, fill: AXIS }} axisLine={false} tickLine={false} />
+            <Tooltip contentStyle={tooltipStyle} cursor={{ stroke: GRID }} />
+            <Area
               type="monotone"
               dataKey="issued"
-              stroke="#16A34A"
+              stroke={GREEN}
               strokeWidth={2.5}
-              dot={{ r: 4 }}
+              fill="url(#issuedFill)"
+              dot={{ r: 3, fill: GREEN }}
+              activeDot={{ r: 5 }}
+              animationDuration={1100}
             />
-          </LineChart>
+          </AreaChart>
         </ResponsiveContainer>
       </ChartCard>
     </div>
   );
 }
 
+const accentBar = {
+  red: "from-ictam to-ictam-dark",
+  gold: "from-psc to-psc-dark",
+  green: "from-verified to-verified-dark",
+} as const;
+
 function ChartCard({
   title,
   children,
+  accent,
+  delay,
 }: {
   title: string;
   children: React.ReactNode;
+  accent: keyof typeof accentBar;
+  delay: number;
 }) {
   return (
-    <div className="card p-5">
-      <h3 className="mb-4 font-bold text-ink">{title}</h3>
+    <Reveal delay={delay} className="card overflow-hidden p-5">
+      <div className="mb-4 flex items-center gap-2.5">
+        <span className={`h-4 w-1 rounded-full bg-gradient-to-b ${accentBar[accent]}`} />
+        <h3 className="font-bold text-ink">{title}</h3>
+      </div>
       {children}
-    </div>
+    </Reveal>
   );
 }

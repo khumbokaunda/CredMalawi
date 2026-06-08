@@ -27,7 +27,7 @@ export default function WalletActions({
 
   if (disabled) {
     return (
-      <p className="px-1 text-xs text-slate-400">
+      <p className="px-1 text-xs text-ink-faint">
         Sharing disabled — this credential is no longer valid.
       </p>
     );
@@ -48,7 +48,7 @@ export default function WalletActions({
             `(Demo) This would share your "${skill}" badge to LinkedIn using the public verification URL.`
           )
         }
-        className="btn px-3 py-2 text-xs bg-ictam-blue text-white hover:bg-ictam-blue/90"
+        className="btn bg-[#0A66C2] px-3 py-2 text-xs text-white transition hover:bg-[#0a5cad]"
         title="Mocked LinkedIn share"
       >
         Share to LinkedIn

@@ -7,6 +7,8 @@ import {
 } from "@/lib/data";
 import CredentialMiniCard from "@/components/CredentialMiniCard";
 import WalletActions from "./WalletActions";
+import Reveal from "@/components/motion/Reveal";
+import { Stagger, StaggerItem } from "@/components/motion/Stagger";
 import { MapPin, ShieldCheck } from "@/components/icons";
 
 export function generateStaticParams() {
@@ -31,32 +33,32 @@ export default function WalletPage({
   return (
     <div>
       {/* Profile header */}
-      <section className="bg-ink text-white">
+      <section className="relative overflow-hidden border-b border-base-600/60 bg-mesh">
         <div className="container-page py-12">
-          <div className="flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
+          <Reveal className="flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
             <div className="flex items-center gap-5">
-              <span className="flex h-20 w-20 items-center justify-center rounded-full bg-psc/20 text-2xl font-bold text-psc-light">
+              <span className="flex h-20 w-20 items-center justify-center rounded-full bg-gradient-to-br from-psc/25 to-ictam/15 text-2xl font-bold text-psc-light ring-1 ring-psc/30">
                 {initials}
               </span>
               <div>
-                <h1 className="text-3xl font-bold tracking-tight">
+                <h1 className="text-3xl font-bold tracking-tight text-ink">
                   {learner.fullName}
                 </h1>
-                <p className="mt-1 text-slate-300">{learner.headline}</p>
-                <p className="mt-1 flex items-center gap-1.5 text-sm text-slate-400">
+                <p className="mt-1 text-ink-muted">{learner.headline}</p>
+                <p className="mt-1 flex items-center gap-1.5 text-sm text-ink-faint">
                   <MapPin className="h-4 w-4" />
                   {learner.city}, {learner.region} Region
                 </p>
               </div>
             </div>
-            <div className="rounded-xl border border-white/10 bg-white/5 px-5 py-4 text-center">
-              <p className="text-3xl font-bold text-psc-light">{valid.length}</p>
-              <p className="text-xs text-slate-400">verified credentials</p>
+            <div className="rounded-2xl border border-base-600/60 bg-base-800/60 px-5 py-4 text-center">
+              <p className="text-3xl font-bold text-verified-light">{valid.length}</p>
+              <p className="text-xs text-ink-faint">verified credentials</p>
             </div>
-          </div>
+          </Reveal>
 
-          <p className="mt-6 flex items-center gap-2 text-sm text-slate-400">
-            <ShieldCheck className="h-4 w-4 text-psc-light" />
+          <p className="mt-6 flex items-center gap-2 text-sm text-ink-faint">
+            <ShieldCheck className="h-4 w-4 text-ictam-light" />
             Public learner wallet · Every badge below links to its independent
             verification page.
           </p>
@@ -65,27 +67,27 @@ export default function WalletPage({
 
       <div className="container-page py-10">
         <h2 className="text-xl font-bold text-ink">Earned credentials</h2>
-        <div className="mt-5 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <Stagger className="mt-5 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {creds.map((c) => (
-            <div key={c.id} className="flex flex-col gap-3">
+            <StaggerItem key={c.id} className="flex flex-col gap-3">
               <CredentialMiniCard credential={c} />
               <WalletActions
                 credentialId={c.id}
                 skill={c.skill}
                 disabled={c.status === "revoked"}
               />
-            </div>
+            </StaggerItem>
           ))}
-        </div>
+        </Stagger>
 
         {creds.length === 0 && (
-          <p className="mt-6 text-slate-500">
+          <p className="mt-6 text-ink-muted">
             This learner has not earned any credentials yet.
           </p>
         )}
 
         <div className="mt-10">
-          <Link href="/registry" className="text-sm font-semibold text-ictam-blue hover:underline">
+          <Link href="/registry" className="text-sm font-semibold text-ictam-light hover:text-ictam">
             ← Explore accredited providers
           </Link>
         </div>
