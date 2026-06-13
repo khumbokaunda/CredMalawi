@@ -11,7 +11,11 @@ html {
 }
 
 body {
-  @apply bg-slate-50 text-ink antialiased;
+  @apply bg-slate-100 text-slate-900 antialiased;
+}
+
+::selection {
+  background: rgba(245, 166, 35, 0.25);
 }
 
 @layer components {
@@ -19,31 +23,58 @@ body {
     @apply mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8;
   }
 
+  /* ---- Buttons ---- */
   .btn {
-    @apply inline-flex items-center justify-center gap-2 rounded-lg px-4 py-2.5 text-sm font-semibold transition focus:outline-none focus:ring-2 focus:ring-offset-2;
+    @apply inline-flex items-center justify-center gap-2 rounded-xl px-4 py-2.5 text-sm font-semibold transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 active:scale-[0.97];
   }
-
+  /* PSC gold = primary brand / platform actions */
   .btn-gold {
-    @apply btn bg-psc text-white hover:bg-psc-dark focus:ring-psc;
+    @apply btn bg-psc text-slate-900 hover:bg-psc-light hover:shadow-glow-gold focus:ring-psc;
   }
-
-  .btn-ink {
-    @apply btn bg-ink text-white hover:bg-ink-800 focus:ring-ink;
+  /* ICTAM red = authority / official / admin */
+  .btn-red {
+    @apply btn bg-ictam text-white hover:bg-ictam-light hover:shadow-glow-red focus:ring-ictam;
   }
-
+  .btn-blue {
+    @apply btn bg-brandblue text-white hover:bg-brandblue-light focus:ring-brandblue;
+  }
   .btn-outline {
-    @apply btn border border-slate-300 bg-white text-ink hover:bg-slate-100 focus:ring-slate-400;
+    @apply btn border border-slate-300 bg-white text-slate-700 hover:border-slate-400 hover:bg-slate-50 focus:ring-slate-400;
+  }
+  .btn-ghost {
+    @apply btn text-slate-500 hover:bg-slate-100 hover:text-slate-900;
+  }
+  /* Dark-surface button (used on navy sidebar/hero) */
+  .btn-on-dark {
+    @apply btn border border-white/15 bg-white/10 text-white hover:bg-white/20 focus:ring-white/40;
   }
 
+  /* ---- Surfaces ---- */
   .card {
-    @apply rounded-xl border border-slate-200 bg-white shadow-sm;
+    @apply rounded-2xl border border-slate-200 bg-white shadow-soft;
+  }
+  .panel {
+    @apply rounded-2xl border border-slate-200 bg-white;
   }
 
   .input {
-    @apply w-full rounded-lg border border-slate-300 px-3 py-2 text-sm text-ink focus:border-psc focus:outline-none focus:ring-1 focus:ring-psc;
+    @apply w-full rounded-xl border border-slate-300 bg-white px-3 py-2.5 text-sm text-slate-900 placeholder:text-slate-400 focus:border-psc focus:outline-none focus:ring-1 focus:ring-psc;
   }
 
   .tag {
     @apply inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-semibold;
+  }
+
+  .eyebrow {
+    @apply text-xs font-semibold uppercase tracking-[0.16em] text-slate-400;
+  }
+}
+
+@layer utilities {
+  .hover-lift {
+    @apply transition-all duration-300 hover:-translate-y-1 hover:shadow-lift;
+  }
+  .text-gradient-gold {
+    @apply bg-gradient-to-r from-psc to-psc-dark bg-clip-text text-transparent;
   }
 }

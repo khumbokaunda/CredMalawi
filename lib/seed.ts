@@ -3,6 +3,7 @@ import type {
   Learner,
   Credential,
   PricingTier,
+  DemoAccount,
 } from "./types";
 
 // ---------------------------------------------------------------------------
@@ -352,5 +353,83 @@ export const pricingTiers: PricingTier[] = [
       "Custom integrations & SSO",
       "SLA-backed support",
     ],
+  },
+];
+
+// ---------------------------------------------------------------------------
+// Accreditation applicants — institutions in the ICTAM "Pending" queue.
+// Approving one (admin portal) flips it to Accredited and surfaces it in the
+// public registry. These start hidden from the public registry.
+// ---------------------------------------------------------------------------
+
+export const accreditationApplicants: Provider[] = [
+  {
+    id: "prov-kasungu-tech",
+    name: "Kasungu Technical College",
+    shortName: "KTC",
+    city: "Kasungu",
+    region: "Central",
+    accreditedSince: "",
+    status: "Pending",
+    about:
+      "A growing technical college serving central Malawi, applying to credential foundational ICT and data programmes.",
+    website: "https://ktc.mw",
+    contactEmail: "principal@ktc.mw",
+    programmes: ["Data Analytics", "Software Development Foundations"],
+    tier: "Starter",
+  },
+  {
+    id: "prov-mangochi-digital",
+    name: "Mangochi Digital Centre",
+    shortName: "MDC",
+    city: "Mangochi",
+    region: "Southern",
+    accreditedSince: "",
+    status: "Pending",
+    about:
+      "A lakeshore community digital centre seeking accreditation to issue cybersecurity and networking credentials.",
+    website: "https://mangochidigital.mw",
+    contactEmail: "info@mangochidigital.mw",
+    programmes: ["Cybersecurity Essentials", "Network Security Fundamentals"],
+    tier: "Standard",
+  },
+  {
+    id: "prov-karonga-ict",
+    name: "Karonga ICT Academy",
+    shortName: "KIA",
+    city: "Karonga",
+    region: "Northern",
+    accreditedSince: "",
+    status: "Pending",
+    about:
+      "A northern-frontier academy applying to deliver accredited cloud and software development training.",
+    website: "https://karongaict.mw",
+    contactEmail: "admissions@karongaict.mw",
+    programmes: ["Cloud Engineering", "Software Development Foundations"],
+    tier: "Starter",
+  },
+];
+
+// ---------------------------------------------------------------------------
+// Mocked demo accounts (any password is accepted in the demo).
+// ---------------------------------------------------------------------------
+
+export const demoAccounts: DemoAccount[] = [
+  {
+    email: "institution@demo.mw",
+    role: "institution",
+    name: "Blantyre Institute of Technology",
+    refId: "prov-blantyre-tech",
+  },
+  {
+    email: "student@demo.mw",
+    role: "student",
+    name: "Tadala Phiri",
+    refId: "learner-tadala-phiri",
+  },
+  {
+    email: "admin@ictam.org.mw",
+    role: "admin",
+    name: "ICTAM Administrator",
   },
 ];
