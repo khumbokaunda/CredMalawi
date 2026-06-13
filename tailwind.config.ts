@@ -8,40 +8,47 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        // ICTAM RED — authority / trust / official. Co-primary.
-        ictam: {
-          DEFAULT: "#E11D2A",
-          light: "#F43F4B",
-          dark: "#B0151F",
-          glow: "rgba(225,29,42,0.35)",
-        },
-        // PSC GOLD/AMBER — platform / premium. Co-primary.
+        // PSC GOLD/AMBER — primary brand + platform actions / highlights.
         psc: {
           DEFAULT: "#F5A623",
           light: "#FBBF4D",
           dark: "#C77F0E",
-          glow: "rgba(245,166,35,0.30)",
+          tint: "#FEF6E7",
         },
-        // Verified green — tuned for dark surfaces.
+        // ICTAM RED — authority / official / admin surfaces.
+        ictam: {
+          DEFAULT: "#E11D2A",
+          light: "#F2535E",
+          dark: "#B0151F",
+          tint: "#FEECEC",
+        },
+        // Supporting blue — links / secondary, used sparingly.
+        brandblue: {
+          DEFAULT: "#1D4ED8",
+          light: "#3B82F6",
+          tint: "#EAF0FE",
+        },
+        // Verified green — tuned for light backgrounds.
         verified: {
-          DEFAULT: "#22C55E",
-          light: "#4ADE80",
+          DEFAULT: "#16A34A",
+          light: "#22C55E",
           dark: "#15803D",
-          glow: "rgba(34,197,94,0.30)",
+          tint: "#ECFDF3",
         },
-        // Dark canvas — midnight navy → near-black charcoal with a blue tint.
-        base: {
-          DEFAULT: "#0B1120", // deepest canvas
-          900: "#0D1424",
-          800: "#111827", // panels
-          700: "#1A2335", // raised panels / cards
-          600: "#243049", // borders / hairlines
-          500: "#334155",
+        // Dark navy — sidebar, public hero panels, badge header.
+        navy: {
+          DEFAULT: "#0F1B33",
+          900: "#0B1426",
+          800: "#13213D",
+          700: "#1C2E52",
+          600: "#283B68",
+          500: "#3A4F7E",
         },
+        // Safety-net neutral aliases (light). New markup prefers slate-*.
         ink: {
-          DEFAULT: "#F8FAFC", // primary text
-          muted: "#94A3B8", // secondary text
-          faint: "#64748B", // tertiary
+          DEFAULT: "#0F172A",
+          muted: "#64748B",
+          faint: "#94A3B8",
         },
       },
       fontFamily: {
@@ -49,18 +56,13 @@ const config: Config = {
         mono: ["ui-monospace", "SFMono-Regular", "Menlo", "monospace"],
       },
       boxShadow: {
-        "glow-red": "0 0 0 1px rgba(225,29,42,0.4), 0 8px 30px -8px rgba(225,29,42,0.45)",
-        "glow-gold": "0 0 0 1px rgba(245,166,35,0.4), 0 8px 30px -8px rgba(245,166,35,0.40)",
-        "glow-green": "0 0 0 1px rgba(34,197,94,0.4), 0 8px 30px -8px rgba(34,197,94,0.40)",
-        "card-dark": "0 1px 0 0 rgba(255,255,255,0.04) inset, 0 12px 40px -16px rgba(0,0,0,0.7)",
-      },
-      backgroundImage: {
-        "mesh": "radial-gradient(60% 50% at 80% 0%, rgba(225,29,42,0.10), transparent 60%), radial-gradient(50% 40% at 10% 10%, rgba(27,79,156,0.16), transparent 55%), radial-gradient(50% 50% at 50% 100%, rgba(245,166,35,0.06), transparent 60%)",
+        soft: "0 1px 2px rgba(15,23,42,0.04), 0 8px 24px -12px rgba(15,23,42,0.12)",
+        lift: "0 10px 30px -12px rgba(15,23,42,0.22)",
+        "glow-gold": "0 10px 30px -12px rgba(245,166,35,0.5)",
+        "glow-red": "0 10px 30px -12px rgba(225,29,42,0.45)",
       },
       keyframes: {
-        shimmer: {
-          "100%": { transform: "translateX(100%)" },
-        },
+        shimmer: { "100%": { transform: "translateX(100%)" } },
       },
       animation: {
         shimmer: "shimmer 1.6s infinite",

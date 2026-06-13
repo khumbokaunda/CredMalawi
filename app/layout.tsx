@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import SiteNav from "@/components/SiteNav";
-import SiteFooter from "@/components/SiteFooter";
+import { AuthProvider } from "@/lib/auth";
+import { DataProvider } from "@/lib/store";
 
 export const metadata: Metadata = {
   title: "CredMalawi — National Digital Credentialing",
@@ -16,10 +16,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className="flex min-h-screen flex-col">
-        <SiteNav />
-        <main className="flex-1">{children}</main>
-        <SiteFooter />
+      <body className="min-h-screen">
+        <AuthProvider>
+          <DataProvider>{children}</DataProvider>
+        </AuthProvider>
       </body>
     </html>
   );

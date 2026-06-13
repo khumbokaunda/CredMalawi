@@ -6,8 +6,8 @@ badges to learners; anyone can verify a credential publicly by URL or QR code,
 with no login.
 
 > **This is a prototype for stakeholder review — not production.** All data is
-> mocked/seed data. There is no authentication, no real payments, and no real
-> Open Badge cryptographic signing.
+> mocked/seed data. Authentication is mocked (no real backend), there are no
+> real payments, and no real Open Badge cryptographic signing.
 
 Operated (conceptually) by **Phantom Stack Collective (PSC)** under the
 institutional authority of **ICTAM** (ICT Association of Malawi). All prices are
@@ -21,85 +21,131 @@ npm install && npm run dev
 
 Then open **http://localhost:3000**.
 
-## Tech stack
+## Demo accounts & quick login
 
-- **Next.js (App Router) + TypeScript**
-- **Tailwind CSS** for styling
-- **qrcode.react** for verification QR codes
-- **recharts** for the analytics charts (ICTAM + dashboard sparklines)
-- **framer-motion** for entrance/interaction animation and route transitions
-- Full **dark theme** throughout with a blended **ICTAM red** (authority) +
-  **PSC gold** (platform) accent system; verified green for status
-- All data comes from local seed files in [`lib/seed.ts`](lib/seed.ts) — no
-  database, no API keys.
+The `/login` page has a **"Quick demo login"** panel — three one-click buttons to
+jump straight into a role (ideal for live presenting). You can also type a seeded
+email; **any password is accepted**. Use the **account menu in the top bar** to
+switch roles mid-demo without logging out.
 
-## Pages
+| Email | Role | Mapped to | Lands on |
+| --- | --- | --- | --- |
+| `institution@demo.mw` | Institution | Blantyre Institute of Technology | `/institution/dashboard` |
+| `student@demo.mw` | Student | Tadala Phiri (owns the seeded credentials) | `/student/credentials` |
+| `admin@ictam.org.mw` | ICTAM Admin | ICTAM Administrator | `/admin/overview` |
+
+## The three portals
+
+All logged-in areas share a **collapsible dark sidebar + top bar** app shell on a
+light content canvas. The sidebar collapses to icons (desktop) and becomes an
+off-canvas drawer (mobile).
+
+**Institution portal** (accent: gold) — `/institution/...`
+`dashboard` (stat cards + sparklines + recent activity), `issue` (animated
+multi-step modal with validation), `templates`, `history`, `revocations`
+(revoking updates the public `/verify` page live), `accreditation`.
+
+**Student portal** (accent: green/gold) — `/student/...`
+`credentials` (wallet with copy-link / share-to-LinkedIn), `public` (shareable
+read-only profile), `verify` (embedded verifier), `profile` (editable mock).
+
+**Administrator portal** (accent: ICTAM red) — `/admin/...`
+`overview` (platform-wide recharts analytics), `institutions` (suspend /
+reinstate), `requests` (approve / reject accreditation — approving publishes the
+institution to the public registry), `registry` (toggle public visibility),
+`credentials` (searchable platform-wide list), `settings` (incl. reset demo).
+
+## Public pages (no sidebar, verification needs no login)
 
 | Route | What it shows |
 | --- | --- |
-| `/` | Landing page: hero, 3-step "How It Works", PSC/ICTAM footer |
-| `/verify/[credentialId]` | **Centrepiece** — public credential verification with the badge card + QR |
+| `/` | Landing: navy hero, count-up stats, 3-step "How It Works" |
+| `/login` | Mocked login + quick role buttons |
+| `/verify/[credentialId]` | **Centrepiece** — verification with the "scanning → Verified" reveal, badge card + QR |
 | `/registry` | Searchable/filterable registry of accredited providers |
 | `/registry/[providerId]` | Provider profile + the credentials they've issued |
-| `/dashboard` | Mocked provider workspace (templates, issue, history, revoke) |
-| `/wallet/[learnerId]` | Public learner wallet of earned badges |
-| `/ictam` | Private-feeling ICTAM analytics dashboard with charts |
+| `/wallet/[learnerId]` | Public, shareable learner profile |
 | `/pricing` | MWK subscription tiers |
 
 ## Sample paths to visit
 
-The seed data is wired together so the flows connect end to end:
+The seed data is wired so the flows connect end to end (`MW-CRED-1001` appears in
+the student wallet, the institution's issuance history, the public registry
+profile, and its own verification page):
 
-- **Valid credential:** [`/verify/MW-CRED-1001`](http://localhost:3000/verify/MW-CRED-1001)
-  — Network Security Fundamentals, awarded to Tadala Phiri by Blantyre Institute
-  of Technology. This same credential appears in the provider profile and the
-  learner wallet below.
-- **Revoked credential:** [`/verify/MW-CRED-1007`](http://localhost:3000/verify/MW-CRED-1007)
-  — demonstrates the revoked state.
-- **Unknown credential:** [`/verify/MW-CRED-9999`](http://localhost:3000/verify/MW-CRED-9999)
-  — demonstrates the "credential not found" state.
-- **Learner wallet:** [`/wallet/learner-tadala-phiri`](http://localhost:3000/wallet/learner-tadala-phiri)
-- **Provider profile:** [`/registry/prov-blantyre-tech`](http://localhost:3000/registry/prov-blantyre-tech)
-- **ICTAM analytics:** [`/ictam`](http://localhost:3000/ictam)
-- **Provider dashboard:** [`/dashboard`](http://localhost:3000/dashboard)
+- **Valid credential:** `/verify/MW-CRED-1001` — Network Security Fundamentals,
+  Tadala Phiri, Blantyre Institute of Technology.
+- **Revoked credential:** `/verify/MW-CRED-1007` — revoked state.
+- **Unknown credential:** `/verify/MW-CRED-9999` — "credential not found" state.
+- **Learner profile:** `/wallet/learner-tadala-phiri`
+- **Provider profile:** `/registry/prov-blantyre-tech`
+- **Portals:** `/institution/dashboard`, `/student/credentials`, `/admin/overview`
 
-## Seed data
+### Cross-surface demo flows
 
-Defined in [`lib/seed.ts`](lib/seed.ts):
+- **Revoke → verify:** Institution → *Revocations* → revoke `MW-CRED-1001`, then
+  open `/verify/MW-CRED-1001` — it now shows the revoked state.
+- **Approve → registry:** Admin → *Accreditation Requests* → approve an applicant
+  (e.g. Kasungu Technical College); it then appears in the public `/registry`.
 
-- **5 training providers** across Blantyre, Lilongwe, Mzuzu, and Zomba.
-- **8 issued credentials** across Network Security Fundamentals, Cloud
-  Engineering, Cybersecurity Essentials, and Data Analytics — including one
-  **revoked** credential (`MW-CRED-1007`).
-- **3 learners** with public wallets.
+State persists in `localStorage` for the session. Admin → *Settings → Reset demo
+data* returns everything to the seeded state.
+
+## Theme & motion
+
+- **Light content** (soft-grey canvas, white surfaces, slate text) with a
+  **dark navy sidebar** and navy public hero panels.
+- Accents with clear jobs: **PSC gold** = brand/platform, **ICTAM red** =
+  authority/admin, supporting **blue** for links, **green** for verified.
+- **framer-motion**: staggered page reveals, count-up stats, card hover-lift,
+  animated sidebar collapse, route transitions, and the signature
+  "scanning → Verified" reveal on the verification page.
+
+## Tech stack
+
+- **Next.js (App Router) + TypeScript**, **Tailwind CSS**
+- **qrcode.react** (QR codes), **recharts** (analytics + sparklines),
+  **framer-motion** (animation)
+- Mocked auth + a `localStorage`-backed data store (React context) — no database,
+  no API keys.
 
 ## What's mocked vs. what a real backend would need
 
 | Area | In this prototype | Production would need |
 | --- | --- | --- |
-| Data | Static seed files (`lib/seed.ts`) | A database (credentials, providers, learners) |
-| Auth | None — the dashboard is an open mocked session | Provider login, roles, ICTAM admin access |
-| Credential signing | Metadata fields only, no signing | Real Open Badges 2.0/3.0 issuance with cryptographic signatures and a hosted verification endpoint |
-| Issuance/revocation | In-memory state in the dashboard (resets on refresh) | Persisted writes + audit trail |
-| Verification | Looks up the local seed array | Verifies signed assertions against the issuer's keys |
+| Data | Seed files + a `localStorage` store (`lib/store.tsx`) | A database (credentials, providers, learners) |
+| Auth | Mocked role-based context, any password (`lib/auth.tsx`) | Real auth, sessions, roles, SSO |
+| Credential signing | Metadata fields only, no signing | Real Open Badges 2.0/3.0 with cryptographic signatures + hosted verification |
+| Issuance / revocation / accreditation | Persisted in the browser for the demo | Server writes + audit trail |
+| Verification | Looks up the local store | Verifies signed assertions against issuer keys |
 | Payments | Pricing cards are display-only | Real billing/subscriptions in MWK |
-| Sharing | "Share to LinkedIn" / "Copy link" are mocked | Real social share + OG metadata |
-| Analytics | Computed from seed data | Aggregated from the live registry |
+| Sharing | "Share to LinkedIn" / "Copy link" mocked | Real social share + OG metadata |
+| Analytics | Computed from seed/store data | Aggregated from the live registry |
 
 ## Project structure
 
 ```
 app/
-  page.tsx                     # Landing
-  verify/[credentialId]/       # Public verification (centrepiece)
-  registry/                    # Provider registry + [providerId] profile
-  dashboard/                   # Mocked provider workspace
-  wallet/[learnerId]/          # Public learner wallet
-  ictam/                       # ICTAM analytics dashboard
-  pricing/                     # MWK pricing tiers
-components/                    # BadgeCard, nav/footer, QR panel, icons
+  layout.tsx                   # Auth + Data providers
+  (public)/                    # Public area — own header/footer, route fade
+    page.tsx                   #   Landing
+    login/                     #   Mocked login + quick role buttons
+    verify/[credentialId]/     #   Public verification (centrepiece)
+    registry/                  #   Registry + [providerId] profile
+    wallet/[learnerId]/        #   Public learner profile
+    pricing/
+  (portal)/                    # Logged-in area — shared app shell
+    layout.tsx                 #   AppShell (sidebar + topbar + guards)
+    institution/[[...section]]/
+    student/[[...section]]/
+    admin/[[...section]]/
+components/
+  app/                         # AppShell, Sidebar, Topbar, nav config
+  portal/                      # Institution / Student / Admin portals + UI
+  BadgeCard, VerifyReveal, IssueModal, IctamCharts, Sparkline, motion/ …
 lib/
-  seed.ts                      # All seed data
-  data.ts                      # Lookup helpers
-  types.ts                     # Domain types
+  seed.ts                      # All seed data + demo accounts + applicants
+  store.tsx                    # localStorage-backed data store (context)
+  auth.tsx                     # Mocked role-based auth (context)
+  data.ts / types.ts / analytics.ts
 ```

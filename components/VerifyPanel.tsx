@@ -25,25 +25,25 @@ export default function VerifyPanel({
       setCopied(true);
       setTimeout(() => setCopied(false), 1800);
     } catch {
-      // Clipboard may be unavailable in the sandbox; ignore for the demo.
+      /* clipboard may be unavailable; ignore for the demo */
     }
   }
 
   return (
     <div className="card p-6">
-      <p className="text-sm font-semibold text-ink">Scan to verify</p>
-      <p className="mt-1 text-xs text-ink-faint">
+      <p className="text-sm font-semibold text-slate-900">Scan to verify</p>
+      <p className="mt-1 text-xs text-slate-500">
         Anyone can scan this code to open the public verification page — no
         login required.
       </p>
 
-      <div className="mt-4 flex justify-center rounded-2xl border border-base-600 bg-white p-4">
-        <QRCodeSVG value={url} size={176} fgColor="#0B1120" bgColor="#ffffff" level="M" />
+      <div className="mt-4 flex justify-center rounded-2xl border border-slate-200 bg-white p-4">
+        <QRCodeSVG value={url} size={176} fgColor="#0F1B33" bgColor="#ffffff" level="M" />
       </div>
 
       <div className="mt-4">
         <p className="eyebrow">Verification URL</p>
-        <p className="mt-1 break-all rounded-lg border border-base-600/60 bg-base-900/70 p-2.5 text-xs text-ink-muted">
+        <p className="mt-1 break-all rounded-lg border border-slate-200 bg-slate-50 p-2.5 text-xs text-slate-600">
           {url}
         </p>
         <button onClick={copy} className="btn-outline mt-3 w-full">

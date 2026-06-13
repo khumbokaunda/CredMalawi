@@ -11,40 +11,11 @@ html {
 }
 
 body {
-  @apply bg-base text-ink antialiased;
-  /* Deep midnight → charcoal canvas with a faint mesh of ICTAM navy / red / PSC gold. */
-  background-color: #0B1120;
-  background-image:
-    radial-gradient(55% 45% at 85% -5%, rgba(225, 29, 42, 0.10), transparent 60%),
-    radial-gradient(45% 40% at 5% 5%, rgba(27, 79, 156, 0.16), transparent 55%),
-    radial-gradient(50% 45% at 50% 110%, rgba(245, 166, 35, 0.05), transparent 60%);
-  background-attachment: fixed;
-}
-
-/* Dark, themed form controls */
-select option {
-  background-color: #111827;
-  color: #f8fafc;
+  @apply bg-slate-100 text-slate-900 antialiased;
 }
 
 ::selection {
   background: rgba(245, 166, 35, 0.25);
-}
-
-/* Slimmer dark scrollbar */
-::-webkit-scrollbar {
-  width: 10px;
-  height: 10px;
-}
-::-webkit-scrollbar-track {
-  background: #0b1120;
-}
-::-webkit-scrollbar-thumb {
-  background: #243049;
-  border-radius: 9999px;
-}
-::-webkit-scrollbar-thumb:hover {
-  background: #334155;
 }
 
 @layer components {
@@ -54,63 +25,56 @@ select option {
 
   /* ---- Buttons ---- */
   .btn {
-    @apply inline-flex items-center justify-center gap-2 rounded-xl px-4 py-2.5 text-sm font-semibold transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-base active:scale-[0.97];
+    @apply inline-flex items-center justify-center gap-2 rounded-xl px-4 py-2.5 text-sm font-semibold transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 active:scale-[0.97];
   }
-  /* ICTAM red = authority / primary actions */
+  /* PSC gold = primary brand / platform actions */
+  .btn-gold {
+    @apply btn bg-psc text-slate-900 hover:bg-psc-light hover:shadow-glow-gold focus:ring-psc;
+  }
+  /* ICTAM red = authority / official / admin */
   .btn-red {
     @apply btn bg-ictam text-white hover:bg-ictam-light hover:shadow-glow-red focus:ring-ictam;
   }
-  /* PSC gold = premium / platform moments */
-  .btn-gold {
-    @apply btn bg-psc text-base-900 hover:bg-psc-light hover:shadow-glow-gold focus:ring-psc;
+  .btn-blue {
+    @apply btn bg-brandblue text-white hover:bg-brandblue-light focus:ring-brandblue;
   }
   .btn-outline {
-    @apply btn border border-base-600 bg-white/[0.03] text-ink hover:border-base-500 hover:bg-white/[0.06] focus:ring-base-500;
+    @apply btn border border-slate-300 bg-white text-slate-700 hover:border-slate-400 hover:bg-slate-50 focus:ring-slate-400;
   }
   .btn-ghost {
-    @apply btn text-ink-muted hover:bg-white/[0.05] hover:text-ink;
+    @apply btn text-slate-500 hover:bg-slate-100 hover:text-slate-900;
+  }
+  /* Dark-surface button (used on navy sidebar/hero) */
+  .btn-on-dark {
+    @apply btn border border-white/15 bg-white/10 text-white hover:bg-white/20 focus:ring-white/40;
   }
 
   /* ---- Surfaces ---- */
   .card {
-    @apply rounded-2xl border border-base-600/70 bg-base-800/70 shadow-card-dark backdrop-blur-sm;
+    @apply rounded-2xl border border-slate-200 bg-white shadow-soft;
   }
   .panel {
-    @apply rounded-2xl border border-base-600/60 bg-base-800/60 backdrop-blur-sm;
+    @apply rounded-2xl border border-slate-200 bg-white;
   }
 
   .input {
-    @apply w-full rounded-xl border border-base-600 bg-base-900/80 px-3 py-2.5 text-sm text-ink placeholder:text-ink-faint focus:border-ictam focus:outline-none focus:ring-1 focus:ring-ictam;
+    @apply w-full rounded-xl border border-slate-300 bg-white px-3 py-2.5 text-sm text-slate-900 placeholder:text-slate-400 focus:border-psc focus:outline-none focus:ring-1 focus:ring-psc;
   }
 
   .tag {
     @apply inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-semibold;
   }
 
-  /* Hairline label */
   .eyebrow {
-    @apply text-xs font-semibold uppercase tracking-[0.18em] text-ink-faint;
+    @apply text-xs font-semibold uppercase tracking-[0.16em] text-slate-400;
   }
 }
 
 @layer utilities {
-  /* Soft hover-lift + glow for interactive cards */
   .hover-lift {
-    @apply transition-all duration-300 hover:-translate-y-1;
-  }
-  .hover-glow-red:hover {
-    box-shadow: 0 0 0 1px rgba(225, 29, 42, 0.35), 0 18px 40px -18px rgba(225, 29, 42, 0.5);
-  }
-  .hover-glow-gold:hover {
-    box-shadow: 0 0 0 1px rgba(245, 166, 35, 0.35), 0 18px 40px -18px rgba(245, 166, 35, 0.5);
-  }
-  .hover-glow-soft:hover {
-    box-shadow: 0 0 0 1px rgba(148, 163, 184, 0.18), 0 18px 40px -18px rgba(0, 0, 0, 0.8);
+    @apply transition-all duration-300 hover:-translate-y-1 hover:shadow-lift;
   }
   .text-gradient-gold {
-    @apply bg-gradient-to-r from-psc-light to-psc bg-clip-text text-transparent;
-  }
-  .text-gradient-red {
-    @apply bg-gradient-to-r from-ictam-light to-ictam bg-clip-text text-transparent;
+    @apply bg-gradient-to-r from-psc to-psc-dark bg-clip-text text-transparent;
   }
 }

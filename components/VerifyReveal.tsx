@@ -35,12 +35,11 @@ export default function VerifyReveal({
             animate={{ opacity: 1 }}
             exit={{ opacity: 0, scale: 0.98 }}
             transition={{ duration: 0.35 }}
-            className="absolute inset-0 z-20 flex min-h-[420px] items-center justify-center rounded-3xl border border-base-600/70 bg-base-800/90 backdrop-blur-sm"
+            className="absolute inset-0 z-20 flex min-h-[420px] items-center justify-center rounded-3xl border border-slate-200 bg-white shadow-soft"
           >
-            {/* scanning shimmer sweep */}
             <div className="pointer-events-none absolute inset-0 overflow-hidden rounded-3xl">
               <motion.div
-                className="absolute inset-y-0 -left-1/3 w-1/3 bg-gradient-to-r from-transparent via-psc/10 to-transparent"
+                className="absolute inset-y-0 -left-1/3 w-1/3 bg-gradient-to-r from-transparent via-psc/15 to-transparent"
                 animate={{ x: ["0%", "400%"] }}
                 transition={{ duration: 1.1, ease: "easeInOut", repeat: Infinity }}
               />
@@ -52,11 +51,11 @@ export default function VerifyReveal({
                 initial={{ opacity: 0, y: 6 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.15 }}
-                className="mt-6 text-sm font-semibold tracking-wide text-ink"
+                className="mt-6 text-sm font-semibold tracking-wide text-slate-900"
               >
                 Verifying credential…
               </motion.p>
-              <p className="mt-1 text-xs text-ink-faint">
+              <p className="mt-1 text-xs text-slate-400">
                 Checking the national registry
               </p>
             </div>
@@ -66,11 +65,7 @@ export default function VerifyReveal({
 
       <motion.div
         initial={{ opacity: 0, y: 12 }}
-        animate={
-          phase === "revealed"
-            ? { opacity: 1, y: 0 }
-            : { opacity: 0, y: 12 }
-        }
+        animate={phase === "revealed" ? { opacity: 1, y: 0 } : { opacity: 0, y: 12 }}
         transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
       >
         {children}
@@ -80,11 +75,11 @@ export default function VerifyReveal({
 }
 
 function ProgressRing({ valid }: { valid: boolean }) {
-  const stroke = valid ? "#22C55E" : "#E11D2A";
+  const stroke = valid ? "#16A34A" : "#E11D2A";
   return (
     <div className="relative h-24 w-24">
       <svg viewBox="0 0 100 100" className="h-24 w-24 -rotate-90">
-        <circle cx="50" cy="50" r="44" fill="none" stroke="#243049" strokeWidth="6" />
+        <circle cx="50" cy="50" r="44" fill="none" stroke="#E2E8F0" strokeWidth="6" />
         <motion.circle
           cx="50"
           cy="50"
@@ -98,7 +93,6 @@ function ProgressRing({ valid }: { valid: boolean }) {
           transition={{ duration: valid ? 1.0 : 0.6, ease: "easeInOut" }}
         />
       </svg>
-      {/* drawn check / cross in the centre */}
       <svg
         viewBox="0 0 24 24"
         className="absolute inset-0 m-auto h-10 w-10"

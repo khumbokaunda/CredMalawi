@@ -1,8 +1,15 @@
-import { providers, learners, credentials } from "./seed";
+import {
+  providers,
+  learners,
+  credentials,
+  accreditationApplicants,
+} from "./seed";
 import type { Credential, Learner, Provider } from "./types";
 
+const allProviders = [...providers, ...accreditationApplicants];
+
 export function getProvider(id: string): Provider | undefined {
-  return providers.find((p) => p.id === id);
+  return allProviders.find((p) => p.id === id);
 }
 
 export function getLearner(id: string): Learner | undefined {
