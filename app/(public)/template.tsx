@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 
 /**
- * Per-route template — remounts on navigation, giving every page a smooth
+ * Per-route template that remounts on navigation, giving every page a smooth
  * fade/slide-in transition.
  */
 export default function Template({ children }: { children: React.ReactNode }) {

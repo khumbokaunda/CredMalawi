@@ -125,7 +125,7 @@ export default function ProviderProfilePage({
                         month: "long",
                         year: "numeric",
                       })
-                    : "—"
+                    : "Not on record"
                 }
               />
               <SideRow k="Status" v={provider.status} />

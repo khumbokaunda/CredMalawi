@@ -28,7 +28,7 @@ export default function WalletActions({
   if (disabled) {
     return (
       <p className="px-1 text-xs text-slate-400">
-        Sharing disabled — this credential is no longer valid.
+        Sharing disabled. This credential is no longer valid.
       </p>
     );
   }

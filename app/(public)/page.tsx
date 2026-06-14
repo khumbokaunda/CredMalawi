@@ -23,7 +23,7 @@ const steps = [
   {
     n: "03",
     title: "Learner shares, employer verifies",
-    body: "The learner shares a link or QR code. Anyone — an employer, a partner, a border agency — can verify it instantly with no login.",
+    body: "The learner shares a link or QR code. Anyone, whether an employer, a partner, or a border agency, can verify it instantly with no login.",
     accent: "text-verified-dark",
     ring: "ring-verified/20 bg-verified-tint",
   },
@@ -35,7 +35,7 @@ export default function HomePage() {
 
   return (
     <div>
-      {/* Hero — navy panel */}
+      {/* Hero, navy panel */}
       <section className="relative overflow-hidden bg-navy text-white">
         <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(225,29,42,0.18),transparent_55%),radial-gradient(ellipse_at_bottom_left,rgba(245,166,35,0.12),transparent_55%)]" />
         <div className="container-page relative grid gap-12 py-20 lg:grid-cols-2 lg:items-center lg:py-28">
@@ -55,7 +55,7 @@ export default function HomePage() {
               <p className="mt-5 max-w-xl text-lg leading-relaxed text-slate-300">
                 CredMalawi is the national platform where accredited training
                 providers issue tamper-evident digital badges. Every credential
-                is publicly verifiable by URL or QR code — instantly, and without
+                is publicly verifiable by URL or QR code, instantly and without
                 a login.
               </p>
             </Reveal>
@@ -104,7 +104,7 @@ export default function HomePage() {
                 </div>
               </div>
               <div className="mt-6 space-y-3 border-t border-white/10 pt-4 text-sm">
-                <Row k="Awarded to" v="Tadala Phiri" />
+                <Row k="Awarded to" v="Peter Chimbuto" />
                 <Row k="Issuing provider" v="Blantyre Institute of Technology" />
                 <Row k="Accrediting authority" v="ICTAM" accent />
               </div>
@@ -179,7 +179,7 @@ export default function HomePage() {
               <Link href="/login" className="btn-gold">
                 Sign in to a portal
               </Link>
-              <Link href="/wallet/learner-tadala-phiri" className="btn-on-dark">
+              <Link href="/wallet/learner-peter-chimbuto" className="btn-on-dark">
                 Open a learner profile
               </Link>
               <Link href="/registry" className="btn-on-dark">

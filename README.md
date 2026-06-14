@@ -1,11 +1,11 @@
-# CredMalawi — Visual Prototype
+# CredMalawi (Visual Prototype)
 
 A clickable demo of **CredMalawi**, a national digital credentialing platform
 for Malawi's ICT sector. Accredited training providers issue verifiable digital
 badges to learners; anyone can verify a credential publicly by URL or QR code,
 with no login.
 
-> **This is a prototype for stakeholder review — not production.** All data is
+> **This is a prototype for stakeholder review, not production.** All data is
 > mocked/seed data. Authentication is mocked (no real backend), there are no
 > real payments, and no real Open Badge cryptographic signing.
 
@@ -23,7 +23,7 @@ Then open **http://localhost:3000**.
 
 ## Demo accounts & quick login
 
-The `/login` page has a **"Quick demo login"** panel — three one-click buttons to
+The `/login` page has a **"Quick demo login"** panel with three one-click buttons to
 jump straight into a role (ideal for live presenting). You can also type a seeded
 email; **any password is accepted**. Use the **account menu in the top bar** to
 switch roles mid-demo without logging out.
@@ -31,7 +31,7 @@ switch roles mid-demo without logging out.
 | Email | Role | Mapped to | Lands on |
 | --- | --- | --- | --- |
 | `institution@demo.mw` | Institution | Blantyre Institute of Technology | `/institution/dashboard` |
-| `student@demo.mw` | Student | Tadala Phiri (owns the seeded credentials) | `/student/credentials` |
+| `student@demo.mw` | Student | Peter Chimbuto (owns the seeded credentials) | `/student/credentials` |
 | `admin@ictam.org.mw` | ICTAM Admin | ICTAM Administrator | `/admin/overview` |
 
 ## The three portals
@@ -40,18 +40,18 @@ All logged-in areas share a **collapsible dark sidebar + top bar** app shell on 
 light content canvas. The sidebar collapses to icons (desktop) and becomes an
 off-canvas drawer (mobile).
 
-**Institution portal** (accent: gold) — `/institution/...`
+**Institution portal** (accent: gold) at `/institution/...`
 `dashboard` (stat cards + sparklines + recent activity), `issue` (animated
 multi-step modal with validation), `templates`, `history`, `revocations`
 (revoking updates the public `/verify` page live), `accreditation`.
 
-**Student portal** (accent: green/gold) — `/student/...`
+**Student portal** (accent: green/gold) at `/student/...`
 `credentials` (wallet with copy-link / share-to-LinkedIn), `public` (shareable
 read-only profile), `verify` (embedded verifier), `profile` (editable mock).
 
-**Administrator portal** (accent: ICTAM red) — `/admin/...`
+**Administrator portal** (accent: ICTAM red) at `/admin/...`
 `overview` (platform-wide recharts analytics), `institutions` (suspend /
-reinstate), `requests` (approve / reject accreditation — approving publishes the
+reinstate), `requests` (approve / reject accreditation, where approving publishes the
 institution to the public registry), `registry` (toggle public visibility),
 `credentials` (searchable platform-wide list), `settings` (incl. reset demo).
 
@@ -61,7 +61,7 @@ institution to the public registry), `registry` (toggle public visibility),
 | --- | --- |
 | `/` | Landing: navy hero, count-up stats, 3-step "How It Works" |
 | `/login` | Mocked login + quick role buttons |
-| `/verify/[credentialId]` | **Centrepiece** — verification with the "scanning → Verified" reveal, badge card + QR |
+| `/verify/[credentialId]` | **Centrepiece**: verification with the "scanning to Verified" reveal, badge card + QR |
 | `/registry` | Searchable/filterable registry of accredited providers |
 | `/registry/[providerId]` | Provider profile + the credentials they've issued |
 | `/wallet/[learnerId]` | Public, shareable learner profile |
@@ -73,18 +73,18 @@ The seed data is wired so the flows connect end to end (`MW-CRED-1001` appears i
 the student wallet, the institution's issuance history, the public registry
 profile, and its own verification page):
 
-- **Valid credential:** `/verify/MW-CRED-1001` — Network Security Fundamentals,
-  Tadala Phiri, Blantyre Institute of Technology.
-- **Revoked credential:** `/verify/MW-CRED-1007` — revoked state.
-- **Unknown credential:** `/verify/MW-CRED-9999` — "credential not found" state.
-- **Learner profile:** `/wallet/learner-tadala-phiri`
+- **Valid credential:** `/verify/MW-CRED-1001`, Network Security Fundamentals,
+  Peter Chimbuto, Blantyre Institute of Technology.
+- **Revoked credential:** `/verify/MW-CRED-1007`, revoked state.
+- **Unknown credential:** `/verify/MW-CRED-9999`, "credential not found" state.
+- **Learner profile:** `/wallet/learner-peter-chimbuto`
 - **Provider profile:** `/registry/prov-blantyre-tech`
 - **Portals:** `/institution/dashboard`, `/student/credentials`, `/admin/overview`
 
 ### Cross-surface demo flows
 
 - **Revoke → verify:** Institution → *Revocations* → revoke `MW-CRED-1001`, then
-  open `/verify/MW-CRED-1001` — it now shows the revoked state.
+  open `/verify/MW-CRED-1001` and it now shows the revoked state.
 - **Approve → registry:** Admin → *Accreditation Requests* → approve an applicant
   (e.g. Kasungu Technical College); it then appears in the public `/registry`.
 
@@ -106,7 +106,7 @@ data* returns everything to the seeded state.
 - **Next.js (App Router) + TypeScript**, **Tailwind CSS**
 - **qrcode.react** (QR codes), **recharts** (analytics + sparklines),
   **framer-motion** (animation)
-- Mocked auth + a `localStorage`-backed data store (React context) — no database,
+- Mocked auth plus a `localStorage`-backed data store (React context), with no database,
   no API keys.
 
 ## What's mocked vs. what a real backend would need
@@ -127,14 +127,14 @@ data* returns everything to the seeded state.
 ```
 app/
   layout.tsx                   # Auth + Data providers
-  (public)/                    # Public area — own header/footer, route fade
+  (public)/                    # Public area with own header/footer, route fade
     page.tsx                   #   Landing
     login/                     #   Mocked login + quick role buttons
     verify/[credentialId]/     #   Public verification (centrepiece)
     registry/                  #   Registry + [providerId] profile
     wallet/[learnerId]/        #   Public learner profile
     pricing/
-  (portal)/                    # Logged-in area — shared app shell
+  (portal)/                    # Logged-in area, shared app shell
     layout.tsx                 #   AppShell (sidebar + topbar + guards)
     institution/[[...section]]/
     student/[[...section]]/

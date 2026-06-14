@@ -52,7 +52,7 @@ export function StatCard({
 }) {
   const t = toneMap[tone];
   const down = trend?.startsWith("-");
-  const flat = trend === "0%" || trend === "—";
+  const flat = trend === "0%" || trend === "Stable";
   return (
     <motion.div
       initial={{ opacity: 0, y: 16 }}

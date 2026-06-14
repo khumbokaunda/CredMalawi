@@ -27,7 +27,7 @@ export function homePathForRole(role: Role): string {
 interface AuthContextValue {
   user: DemoAccount | null;
   ready: boolean;
-  /** Email/password login — any password is accepted in the demo. */
+  /** Email/password login. Any password is accepted in the demo. */
   login: (email: string) => DemoAccount | null;
   /** One-click role login for live presenting. */
   quickLogin: (role: Role) => DemoAccount;

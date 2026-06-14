@@ -70,7 +70,7 @@ export function DataProvider({ children }: { children: React.ReactNode }) {
     setHydrated(true);
   }, []);
 
-  // Persist on change — but only after we've loaded any existing data.
+  // Persist on change, but only after we've loaded any existing data.
   useEffect(() => {
     if (!hydrated) return;
     try {

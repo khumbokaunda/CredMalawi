@@ -15,7 +15,7 @@ export default function SiteFooter() {
           <p className="mt-4 max-w-md text-sm leading-relaxed text-slate-500">
             Malawi&apos;s national digital credentialing platform for the ICT
             sector. Accredited providers issue verifiable digital badges that
-            anyone can confirm — publicly, instantly, and without a login.
+            anyone can confirm, publicly and instantly, without a login.
           </p>
           <div className="mt-5 flex items-center gap-3">
             <span className="tag border border-ictam/20 bg-ictam-tint text-ictam-dark">
@@ -55,7 +55,7 @@ export default function SiteFooter() {
           </p>
           <p>
             Under the institutional authority of{" "}
-            <span className="font-semibold text-ictam">ICTAM</span> — ICT
+            <span className="font-semibold text-ictam">ICTAM</span>, the ICT
             Association of Malawi
           </p>
         </div>

@@ -28,7 +28,7 @@ export default function BadgeCard({ credential }: { credential: Credential }) {
         revoked ? "border-ictam/30" : "border-slate-200"
       }`}
     >
-      {/* Header band — navy */}
+      {/* Header band, navy */}
       <div className="relative overflow-hidden bg-navy px-6 py-6 text-white sm:px-8">
         {!revoked && (
           <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-psc to-transparent" />
@@ -81,7 +81,7 @@ export default function BadgeCard({ credential }: { credential: Credential }) {
       ) : (
         <div className="flex items-center gap-2 border-y border-verified/20 bg-verified-tint px-6 py-3 text-sm font-semibold text-verified-dark sm:px-8">
           <CheckBadge className="h-5 w-5 text-verified" />
-          Verified — this is a genuine, currently valid credential.
+          Verified. This is a genuine, currently valid credential.
         </div>
       )}
 

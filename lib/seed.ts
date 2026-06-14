@@ -102,8 +102,8 @@ export const providers: Provider[] = [
 
 export const learners: Learner[] = [
   {
-    id: "learner-tadala-phiri",
-    fullName: "Tadala Phiri",
+    id: "learner-peter-chimbuto",
+    fullName: "Peter Chimbuto",
     city: "Blantyre",
     region: "Southern",
     headline: "Network & Security Engineer",
@@ -129,7 +129,7 @@ export const learners: Learner[] = [
 
 // ---------------------------------------------------------------------------
 // Issued Credentials
-//   - MW-CRED-1001 is wired into BIT (registry) and Tadala's wallet for the
+//   - MW-CRED-1001 is wired into BIT (registry) and Peter Chimbuto's wallet for the
 //     full click-through demo.
 //   - MW-CRED-1007 is REVOKED to demonstrate that state.
 // ---------------------------------------------------------------------------
@@ -140,8 +140,8 @@ export const credentials: Credential[] = [
     code: "NSF-2024-0481",
     skill: "Network Security Fundamentals",
     category: "Networking",
-    learnerId: "learner-tadala-phiri",
-    learnerName: "Tadala Phiri",
+    learnerId: "learner-peter-chimbuto",
+    learnerName: "Peter Chimbuto",
     providerId: "prov-blantyre-tech",
     issueDate: "2024-05-18",
     expiryDate: "2027-05-18",
@@ -220,8 +220,8 @@ export const credentials: Credential[] = [
     code: "CSE-2024-0712",
     skill: "Cybersecurity Essentials",
     category: "Security",
-    learnerId: "learner-tadala-phiri",
-    learnerName: "Tadala Phiri",
+    learnerId: "learner-peter-chimbuto",
+    learnerName: "Peter Chimbuto",
     providerId: "prov-zomba-academy",
     issueDate: "2024-11-04",
     expiryDate: "2027-11-04",
@@ -239,8 +239,8 @@ export const credentials: Credential[] = [
     code: "DAT-2024-0805",
     skill: "Data Analytics",
     category: "Data",
-    learnerId: "learner-tadala-phiri",
-    learnerName: "Tadala Phiri",
+    learnerId: "learner-peter-chimbuto",
+    learnerName: "Peter Chimbuto",
     providerId: "prov-blantyre-tech",
     issueDate: "2025-01-15",
     expiryDate: null,
@@ -265,7 +265,7 @@ export const credentials: Credential[] = [
     expiryDate: "2026-08-19",
     status: "revoked",
     revocationReason:
-      "Issued in error — learner did not complete the required practical assessment. Revoked by the issuing provider on 2024-02-10.",
+      "Issued in error. The learner did not complete the required practical assessment. Revoked by the issuing provider on 2024-02-10.",
     region: "Central",
     level: "Professional",
     openBadgeVersion: "3.0",
@@ -357,7 +357,7 @@ export const pricingTiers: PricingTier[] = [
 ];
 
 // ---------------------------------------------------------------------------
-// Accreditation applicants — institutions in the ICTAM "Pending" queue.
+// Accreditation applicants: institutions in the ICTAM "Pending" queue.
 // Approving one (admin portal) flips it to Accredited and surfaces it in the
 // public registry. These start hidden from the public registry.
 // ---------------------------------------------------------------------------
@@ -424,8 +424,8 @@ export const demoAccounts: DemoAccount[] = [
   {
     email: "student@demo.mw",
     role: "student",
-    name: "Tadala Phiri",
-    refId: "learner-tadala-phiri",
+    name: "Peter Chimbuto",
+    refId: "learner-peter-chimbuto",
   },
   {
     email: "admin@ictam.org.mw",
