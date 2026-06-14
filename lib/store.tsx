@@ -15,7 +15,7 @@ import {
   accreditationApplicants,
 } from "./seed";
 
-const STORAGE_KEY = "credmalawi:data:v1";
+const STORAGE_KEY = "credmalawi:data:v2";
 
 // Full provider set = accredited/provisional + the pending applicant queue.
 const initialProviders: Provider[] = [

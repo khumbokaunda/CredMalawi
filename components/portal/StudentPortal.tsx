@@ -14,7 +14,9 @@ import { CheckBadge, ShieldCheck } from "@/components/icons";
 
 export default function StudentPortal({ section }: { section: string }) {
   const { user } = useAuth();
-  const learnerId = user?.refId ?? "learner-peter-chimbuto";
+  // Fall back to the seeded student if a stale/unknown id ever appears.
+  const learnerId =
+    user?.refId && getLearner(user.refId) ? user.refId : "learner-peter-chimbuto";
   const learner = getLearner(learnerId)!;
   const creds = useCredentialsForLearner(learnerId);
   const valid = creds.filter((c) => c.status === "valid");

@@ -11,7 +11,7 @@ import {
 import type { DemoAccount, Role } from "./types";
 import { demoAccounts } from "./seed";
 
-const STORAGE_KEY = "credmalawi:auth:v1";
+const STORAGE_KEY = "credmalawi:auth:v2";
 
 export function homePathForRole(role: Role): string {
   switch (role) {
