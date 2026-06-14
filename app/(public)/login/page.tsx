@@ -11,7 +11,7 @@ import { ShieldCheck } from "@/components/icons";
 
 const quickRoles: { role: Role; label: string; accent: string; sub: string }[] = [
   { role: "institution", label: "Enter as Institution", accent: "btn-gold", sub: "Blantyre Institute of Technology" },
-  { role: "student", label: "Enter as Student", accent: "btn-blue", sub: "Tadala Phiri" },
+  { role: "student", label: "Enter as Student", accent: "btn-blue", sub: "Peter Chimbuto" },
   { role: "admin", label: "Enter as ICTAM Admin", accent: "btn-red", sub: "ICTAM Administrator" },
 ];
 
@@ -44,7 +44,7 @@ export default function LoginPage() {
   return (
     <div className="container-page py-12 lg:py-16">
       <div className="mx-auto grid max-w-5xl gap-8 lg:grid-cols-2">
-        {/* Quick demo login — the presenter's fast path */}
+        {/* Quick demo login, the presenter's fast path */}
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
@@ -56,7 +56,7 @@ export default function LoginPage() {
           </span>
           <h2 className="mt-4 text-2xl font-bold">Jump straight into a role</h2>
           <p className="mt-2 text-sm text-slate-300">
-            One click each — no typing. Switch roles any time from the account
+            One click each, no typing. Switch roles any time from the account
             menu in the top bar.
           </p>
 

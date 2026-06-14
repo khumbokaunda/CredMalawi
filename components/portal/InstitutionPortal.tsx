@@ -143,7 +143,7 @@ function Dashboard({ mine, onIssue, templateCount }: { mine: Credential[]; onIss
         <StatCard label="Credentials issued" value={mine.length} tone="gold" trend="+18%" spark={SPARKS.total} index={0} />
         <StatCard label="Currently valid" value={valid} tone="green" trend="+12%" spark={SPARKS.valid} index={1} />
         <StatCard label="Issued this month" value={thisMonth} tone="blue" trend="+25%" spark={SPARKS.month} index={2} />
-        <StatCard label="Active templates" value={templateCount} tone="slate" trend="—" index={3} />
+        <StatCard label="Active templates" value={templateCount} tone="slate" index={3} />
       </div>
 
       <div className="card overflow-hidden">
@@ -187,7 +187,7 @@ function IssueLanding({ onIssue }: { onIssue: () => void }) {
           <CheckBadge className="h-8 w-8" />
         </div>
         <p className="mx-auto mt-4 max-w-md text-sm text-slate-500">
-          Issuing opens a guided, validated flow — pick the learner, the badge
+          Issuing opens a guided, validated flow. Pick the learner, the badge
           template, and the dates, then review before it&apos;s minted with a
           unique verification ID and QR.
         </p>
@@ -280,7 +280,7 @@ function Revocations({
 }) {
   return (
     <div>
-      <SectionHeader title="Revocations" subtitle="Revoke a credential — the public verification page updates instantly." />
+      <SectionHeader title="Revocations" subtitle="Revoke a credential and the public verification page updates instantly." />
       <div className="card overflow-hidden">
         <div className="overflow-x-auto">
           <table className="w-full text-left text-sm">
@@ -339,8 +339,8 @@ function Accreditation() {
             <span className="ml-auto"><StatusPill status={provider.status} /></span>
           </div>
           <dl className="mt-6 grid gap-4 sm:grid-cols-2">
-            <Info k="Accrediting authority" v="ICTAM — ICT Association of Malawi" />
-            <Info k="Accredited since" v={provider.accreditedSince ? new Date(provider.accreditedSince).toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric" }) : "—"} />
+            <Info k="Accrediting authority" v="ICTAM, the ICT Association of Malawi" />
+            <Info k="Accredited since" v={provider.accreditedSince ? new Date(provider.accreditedSince).toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric" }) : "Not on record"} />
             <Info k="Subscription tier" v={provider.tier} />
             <Info k="Region" v={`${provider.city}, ${provider.region}`} />
           </dl>

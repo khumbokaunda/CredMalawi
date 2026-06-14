@@ -14,7 +14,7 @@ import { CheckBadge, ShieldCheck } from "@/components/icons";
 
 export default function StudentPortal({ section }: { section: string }) {
   const { user } = useAuth();
-  const learnerId = user?.refId ?? "learner-tadala-phiri";
+  const learnerId = user?.refId ?? "learner-peter-chimbuto";
   const learner = getLearner(learnerId)!;
   const creds = useCredentialsForLearner(learnerId);
   const valid = creds.filter((c) => c.status === "valid");
@@ -65,7 +65,7 @@ function ShareActions({ credentialId, skill, disabled }: { credentialId: string;
       setTimeout(() => setCopied(false), 1800);
     } catch {/* ignore */}
   }
-  if (disabled) return <p className="px-1 text-xs text-slate-400">Sharing disabled — credential revoked.</p>;
+  if (disabled) return <p className="px-1 text-xs text-slate-400">Sharing disabled. This credential is revoked.</p>;
   return (
     <div className="flex gap-2">
       <button onClick={copy} className="btn-outline flex-1 px-3 py-2 text-xs">
@@ -149,7 +149,7 @@ function Profile({ learner }: { learner: ReturnType<typeof getLearner> }) {
   const [saved, setSaved] = useState(false);
   return (
     <div>
-      <SectionHeader title="Profile" subtitle="Your learner profile (mock — edits are local to the demo)." />
+      <SectionHeader title="Profile" subtitle="Your learner profile (mock, edits stay local to the demo)." />
       <form
         onSubmit={(e) => { e.preventDefault(); setSaved(true); setTimeout(() => setSaved(false), 2500); }}
         className="card max-w-xl space-y-4 p-6"

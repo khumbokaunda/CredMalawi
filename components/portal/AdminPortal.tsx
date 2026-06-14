@@ -157,7 +157,7 @@ function Requests({ notify }: { notify: (m: string) => void }) {
                   ))}
                 </div>
                 <div className="mt-5 flex gap-2">
-                  <button onClick={() => { approveApplicant(p.id); notify(`${p.name} accredited — now public in the registry.`); }} className="btn-red flex-1">
+                  <button onClick={() => { approveApplicant(p.id); notify(`${p.name} accredited and now public in the registry.`); }} className="btn-red flex-1">
                     <CheckBadge className="h-4 w-4" /> Approve
                   </button>
                   <button onClick={() => { rejectApplicant(p.id); notify(`${p.name} rejected.`); }} className="btn-outline flex-1">

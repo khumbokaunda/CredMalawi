@@ -8,34 +8,34 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        // PSC GOLD/AMBER — primary brand + platform actions / highlights.
+        // PSC GOLD/AMBER: primary brand and platform actions / highlights.
         psc: {
           DEFAULT: "#F5A623",
           light: "#FBBF4D",
           dark: "#C77F0E",
           tint: "#FEF6E7",
         },
-        // ICTAM RED — authority / official / admin surfaces.
+        // ICTAM RED: authority / official / admin surfaces.
         ictam: {
           DEFAULT: "#E11D2A",
           light: "#F2535E",
           dark: "#B0151F",
           tint: "#FEECEC",
         },
-        // Supporting blue — links / secondary, used sparingly.
+        // Supporting blue: links / secondary, used sparingly.
         brandblue: {
           DEFAULT: "#1D4ED8",
           light: "#3B82F6",
           tint: "#EAF0FE",
         },
-        // Verified green — tuned for light backgrounds.
+        // Verified green: tuned for light backgrounds.
         verified: {
           DEFAULT: "#16A34A",
           light: "#22C55E",
           dark: "#15803D",
           tint: "#ECFDF3",
         },
-        // Dark navy — sidebar, public hero panels, badge header.
+        // Dark navy: sidebar, public hero panels, badge header.
         navy: {
           DEFAULT: "#0F1B33",
           900: "#0B1426",

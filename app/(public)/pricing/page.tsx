@@ -4,7 +4,7 @@ import Reveal from "@/components/motion/Reveal";
 import { Stagger, StaggerItem } from "@/components/motion/Stagger";
 
 export const metadata = {
-  title: "Pricing — CredMalawi",
+  title: "Pricing · CredMalawi",
 };
 
 export default function PricingPage() {

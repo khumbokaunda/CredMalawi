@@ -7,7 +7,7 @@ type Phase = "scanning" | "revealed";
 
 /**
  * The signature trust moment. For a valid credential we play a deliberate
- * ~1s "Verifying credential…" scan — a progress ring + shimmer — that resolves
+ * ~1s "Verifying credential…" scan (a progress ring plus shimmer) that resolves
  * into a green check drawing itself in, then reveals the badge card beneath.
  * Revoked credentials skip the green resolve and reveal directly.
  */

@@ -2,7 +2,7 @@ import RegistryClient from "./RegistryClient";
 import Reveal from "@/components/motion/Reveal";
 
 export const metadata = {
-  title: "Provider Registry — CredMalawi",
+  title: "Provider Registry · CredMalawi",
 };
 
 export default function RegistryPage() {

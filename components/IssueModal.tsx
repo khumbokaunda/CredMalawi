@@ -203,14 +203,14 @@ export default function IssueModal({
                       </div>
                       <dl className="mt-4 space-y-2.5 text-sm">
                         <Review k="Learner" v={data.learnerName} />
-                        <Review k="Skill" v={tpl?.skill ?? "—"} />
-                        <Review k="Level" v={tpl?.level ?? "—"} />
+                        <Review k="Skill" v={tpl?.skill ?? "Not selected"} />
+                        <Review k="Level" v={tpl?.level ?? "Not selected"} />
                         <Review k="Issue date" v={data.issueDate} />
                         <Review k="Expiry" v={data.expiryDate || "No expiry"} />
                         <Review k="Authority" v="ICTAM" accent />
                       </dl>
                       <p className="mt-4 text-xs text-slate-400">
-                        A unique verification ID + QR will be minted. Demo only —
+                        A unique verification ID and QR will be minted. This is a demo, so
                         nothing is cryptographically signed.
                       </p>
                     </div>

@@ -33,7 +33,7 @@ export default function VerifyPanel({
     <div className="card p-6">
       <p className="text-sm font-semibold text-slate-900">Scan to verify</p>
       <p className="mt-1 text-xs text-slate-500">
-        Anyone can scan this code to open the public verification page — no
+        Anyone can scan this code to open the public verification page. No
         login required.
       </p>
 
